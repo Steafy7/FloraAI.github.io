@@ -56,6 +56,6 @@ jobs:
 
       - name: Run script with OpenAI API
         env:
-          VITE_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Access the API key from GitHub Secrets
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Access the API key from GitHub Secrets
         run: |
           node flora.js

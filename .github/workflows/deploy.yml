@@ -48,14 +48,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-  
-      - name: Install dependencies
-        uses: npm install
-
       - name: Run script with OpenAI API
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Access the API key from GitHub Secrets
+          VITE_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Access the API key from GitHub Secrets
         run: |
           node flora.js

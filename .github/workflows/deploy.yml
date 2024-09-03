@@ -50,9 +50,11 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
+        with:
+          node-version: '16'
   
       - name: Install dependencies
-        uses: npm install
+        run: npm install
 
       - name: Run script with OpenAI API
         env:

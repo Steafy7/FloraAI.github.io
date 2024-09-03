@@ -52,7 +52,7 @@ jobs:
         uses: actions/setup-node@v3
   
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        uses: npm install
 
       - name: Run script with OpenAI API
         env:

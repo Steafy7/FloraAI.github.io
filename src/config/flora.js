@@ -1,10 +1,7 @@
 import OpenAI from "openai";
-import dotenv from "dotenv";
-
-dotenv.config(); // Load environment variables from .env file
 
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true
 });
 

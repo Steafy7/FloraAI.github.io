@@ -14,6 +14,16 @@
     color: #585858;
 }
 
+.main .nav div{
+    display: inline-flex;
+    gap: 5px;
+}
+
+.main .nav div img{
+    width: 30px;
+    border-radius: 50%;
+}
+
 .main .nav img{
     width: 40px;
     border-radius: 50%;

@@ -6,7 +6,6 @@ export const Context = createContext();
 const ContextProvider = (props) => {
 
     const [input,setInput] = useState("");
-    const [recentPrompt,setRecentPrompt] = useState("");
     const [prevPrompts,setPrevPrompts] = useState([]);
     const [showResult,setShowResult] = useState(false);
     const [loading,setLoading] = useState(false);
@@ -27,18 +26,16 @@ const ContextProvider = (props) => {
     const loader = '<div className="loader"><hr /><hr /><hr /></div>)'
 
     const onSent = async () => {
-        const text = input;
         setResultData("")
         setShowResult(true)
-        // setRecentPrompt(input)
         setInput("")
         setMessages([
             ...messages,
-            {text, isBot: false},
+            {text: input, isBot: false},
             {text: "", isBot: true}
         ]);
         setLoading(true)
-        const response = await runChat(text)
+        const response = await runChat(input)
         let newResponseArray = response.split(" ");
         for(let i=0; i<newResponseArray.length; i++) {
             const nextWord = newResponseArray[i];
@@ -48,7 +45,7 @@ const ContextProvider = (props) => {
         
         setMessages([
             ...messages,
-            {text, isBot: false},
+            {text: input, isBot: false},
             {text: response, isBot: true}
         ]);
     }
@@ -57,8 +54,6 @@ const ContextProvider = (props) => {
         prevPrompts,
         setPrevPrompts,
         onSent,
-        setRecentPrompt,
-        recentPrompt,
         showResult,
         loading,
         resultData,

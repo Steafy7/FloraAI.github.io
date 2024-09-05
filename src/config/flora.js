@@ -12,7 +12,7 @@ let setupPrompts = [
     },
     {
         "role": "user",
-        "content": "Please format the following text and all the inputs later on, in HTML with proper tags such as <h2> for headings(if there's # in heading then get rid of it), <p> for paragraphs, replace '---' with <hr /> for section breaks and <strong> for bold text and don't mention that you formatted the text or show the html embedding at the begining and end. Make sure each section is clearly defined and styled appropriately:\n\n"
+        "content": "Please MAKE SURE to format the following text and all the inputs later on, in HTML with proper tags such as <h2> for headings(if there's # in heading then get rid of it), <p> for paragraphs, replace '---' with <hr /> for section breaks and <strong> for bold text and don't mention that you formatted the text or show the html embedding at the begining and end. Make sure each section is clearly defined and styled appropriately:\n\n"
     }
 ];
 

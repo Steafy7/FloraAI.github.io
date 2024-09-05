@@ -1,11 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import './Main.css'
 import { assets } from '../../assets/assets'
 import { Context } from '../../context/Context'
 
 const Main = () => {
 
-    const {onSent,recentPrompt,showResult,loading,resultData,setInput,input,messages} = useContext(Context)
+    const msgEnd = useRef(null);
+
+    const {onSent,showResult,loading,resultData,setInput,input,messages} = useContext(Context)
+
+    useEffect(() => {
+        msgEnd.current?.scrollIntoView();
+    }, [messages, resultData]);
 
   return (
     <div className='main'>
@@ -51,6 +57,7 @@ const Main = () => {
                             {message.isBot? <p dangerouslySetInnerHTML={{ __html: i === messages.length - 1 ? resultData : message.text }}></p> : <p>{message.text}</p>}
                         </div>
                     )}
+                    <div ref={msgEnd}/>
                 </div>
             }
 

@@ -24,7 +24,6 @@ const Main = () => {
                     <img src={assets.flora_icon} alt="" />
                     <p>Flora</p>
                 </div>
-                <img src={assets.user_icon} alt="" />
             </div>
             <div className="main-container">
 

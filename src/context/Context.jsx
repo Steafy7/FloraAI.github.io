@@ -26,7 +26,7 @@ const ContextProvider = (props) => {
     const loader = '<div className="loader"><hr /><hr /><hr /></div>)'
 
     const onSent = async () => {
-        setResultData("")
+        setResultData(" ")
         setShowResult(true)
         setInput("")
         setMessages([

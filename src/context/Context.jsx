@@ -32,7 +32,7 @@ const ContextProvider = (props) => {
         setMessages([
             ...messages,
             {text: input, isBot: false},
-            {text: "", isBot: true}
+            {text: " ", isBot: true}
         ]);
         setLoading(true)
         const response = await runChat(input)

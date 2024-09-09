@@ -17,6 +17,11 @@ const Main = () => {
         if (e.key == 'Enter') await onSent();
     }
 
+    // Function to handle card clicks
+    const handleCardClick = async (text) => {
+        await onSent(text);  // Trigger the submission
+    }
+
     return (
         <div className='main'>
             <div className="nav">
@@ -35,20 +40,20 @@ const Main = () => {
                         <p>How can I help you today?</p>
                     </div>
                     <div className="cards">
-                        <div className="card">
-                            <p>What is the most trending place to visit in Canada?</p>
+                        <div className="card" onClick={(e) => handleCardClick("What are the available commands in Flora?")}>
+                            <p>What are the available commands in Flora?</p>
                             <img src={assets.compass_icon} alt="" />
                         </div>
-                        <div className="card">
-                            <p>Briefly summarize this concept: catalyst in chemistry</p>
+                        <div className="card" onClick={(e) => handleCardClick("/plan Grade 12 Calculus")}>
+                            <p>/plan Grade 12 Calculus</p>
                             <img src={assets.bulb_icon} alt="" />
                         </div>
-                        <div className="card">
-                            <p>Brainstorm team bonding activities for a computer science group project</p>
+                        <div className="card" onClick={(e) => handleCardClick("/language Spanish")}>
+                            <p>/language Spanish</p>
                             <img src={assets.message_icon} alt="" />
                         </div>
-                        <div className="card">
-                            <p>Improve the readability of the following code</p>
+                        <div className="card" onClick={(e) => handleCardClick("/config")}>
+                            <p>/config</p>
                             <img src={assets.code_icon} alt="" />
                         </div>
                     </div>

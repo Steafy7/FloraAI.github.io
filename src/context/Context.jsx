@@ -25,17 +25,18 @@ const ContextProvider = (props) => {
 
     const loader = '<div className="loader"><hr /><hr /><hr /></div>)'
 
-    const onSent = async () => {
+    const onSent = async (inputText = input) => {
+        if (!inputText) return; // Prevent sending blank input
         setResultData(" ")
         setShowResult(true)
         setInput("")
         setMessages([
             ...messages,
-            {text: input, isBot: false},
-            {text: " ", isBot: true}
+            {text: inputText, isBot: false},
+            {text: "", isBot: true}
         ]);
         setLoading(true)
-        const response = await runChat(input)
+        const response = await runChat(inputText)
         let newResponseArray = response.split(" ");
         for(let i=0; i<newResponseArray.length; i++) {
             const nextWord = newResponseArray[i];
@@ -45,7 +46,7 @@ const ContextProvider = (props) => {
         
         setMessages([
             ...messages,
-            {text: input, isBot: false},
+            {text: inputText, isBot: false},
             {text: response, isBot: true}
         ]);
     }

@@ -23,10 +23,10 @@ async function runChat(prompt) {
     // Add the user's message to the recent conversation history
     recentPrompts.push({ role: "user", content: prompt });
 
-    // Trim the recent conversation history to the last 10 messages
-    if (recentPrompts.length > 10) {
-        recentPrompts = recentPrompts.slice(-10);
-    }
+    // Trim the recent conversation history to the last 10 messages - currently disabled
+    // if (recentPrompts.length > 10) {
+    //     recentPrompts = recentPrompts.slice(-10);
+    // }
 
     // Combine setup messages with the trimmed recent conversation history
     const completePromptHistory = [...setupPrompts, ...recentPrompts];

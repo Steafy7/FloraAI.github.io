@@ -7,14 +7,18 @@ const Main = () => {
 
     const msgEnd = useRef(null);
 
-    const {onSent,showResult,loading,resultData,setInput,input,messages} = useContext(Context)
+    const {onSent,showResult,loading,resultData,resultEnd,setInput,input,messages} = useContext(Context)
 
     useEffect(() => {
         msgEnd.current?.scrollIntoView();
     }, [messages, resultData]);
 
     const enterPressed = async (e) => {
-        if (e.key == 'Enter') await onSent();
+        if (e.key === 'Enter') await sendMessage();
+    }
+
+    const sendMessage = async () => {
+        if (!loading && resultData === resultEnd) await onSent();
     }
 
     // Function to handle card clicks
@@ -77,7 +81,7 @@ const Main = () => {
                         <div>
                             <img src={assets.gallery_icon} alt="" />
                             <img src={assets.mic_icon} alt="" />
-                            <img onClick={()=>onSent()} src={assets.send_icon} alt="" />
+                            <img onClick={()=>sendMessage()} src={assets.send_icon} alt="" />
                         </div>
                     </div>
                     <p className='bottom-info'>

@@ -33,7 +33,7 @@ async function runChat(prompt) {
 
 
     const response = await openai.chat.completions.create({
-        model: "gpt-4o-mini",
+        model: "gpt-4o",
         messages: completePromptHistory,
         temperature: 1,
         max_tokens: 8192,

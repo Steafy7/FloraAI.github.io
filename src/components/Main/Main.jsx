@@ -64,7 +64,7 @@ const Main = () => {
                     </>
                     :<div className='result'>
                         {messages.map((message, i) =>
-                            <div key={i} className={!message.isBot?"result-title":"result-data"}>
+                            <div markdown="1" key={i} className={!message.isBot?"result-title":"result-data"}>
                                 <img src={!message.isBot?assets.user_icon:assets.flora_icon} alt='' />
                                 {message.isBot? <p dangerouslySetInnerHTML={{ __html: i === messages.length - 1 ? resultData : message.text }}></p> : <p>{message.text}</p>}
                             </div>

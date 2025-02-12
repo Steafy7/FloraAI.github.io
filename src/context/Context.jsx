@@ -50,12 +50,7 @@ const ContextProvider = (props) => {
 
             // checks for the last word being typed and rescans the webpage for math formulas to convert them
             if (i==newResponseArray.length-1){
-                // for(let j=0; j<10; j++) {
-                    
-                // }
-                
                 setTimeout(() => {
-                    console.log("started spamming") 
                     window.MathJax.typesetPromise();
                 }, 50*i+500); // last loop for last word and it's time delay, plus 500ms
             }

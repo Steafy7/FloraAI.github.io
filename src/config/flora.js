@@ -55,9 +55,6 @@ async function runChat(prompt) {
         recentPrompts = recentPrompts.slice(-10);
     }
 
-    console.log(recentPrompts)
-
-    // console.log(aiMessage);
     return aiMessage;
 }
   

@@ -10,6 +10,7 @@ const Main = () => {
     const {onSent,showResult,loading,resultData,resultEnd,setInput,input,messages} = useContext(Context)
 
     useEffect(() => {
+        renderMarkdown(); // Refreshes the markdown format
         msgEnd.current?.scrollIntoView();
     }, [messages, resultData]);
 
@@ -64,9 +65,9 @@ const Main = () => {
                     </>
                     :<div className='result'>
                         {messages.map((message, i) =>
-                            <div markdown="1" key={i} className={!message.isBot?"result-title":"result-data"}>
+                            <div key={i} className={!message.isBot?"result-title":"result-data"}>
                                 <img src={!message.isBot?assets.user_icon:assets.flora_icon} alt='' />
-                                {message.isBot? <p dangerouslySetInnerHTML={{ __html: i === messages.length - 1 ? resultData : message.text }}></p> : <p>{message.text}</p>}
+                                {message.isBot? <github-md dangerouslySetInnerHTML={{ __html: i === messages.length - 1 ? resultData : message.text }}></github-md> : <github-md>{message.text}</github-md>}
                             </div>
                         )}
                         <div ref={msgEnd}/>

@@ -52,6 +52,7 @@ const ContextProvider = (props) => {
             if (i==newResponseArray.length-1){
                 setTimeout(() => {
                     window.MathJax.typesetPromise();
+                    renderMarkdown(); // Refreshes the markdown format
                 }, 50*i+500); // last loop for last word and it's time delay, plus 500ms
             }
         }

@@ -39,12 +39,26 @@ const ContextProvider = (props) => {
         ]);
         setLoading(true)
 
-        const response = await runChat(inputText)
-        let newResponseArray = response.split(" ");
+        const response = await runChat(inputText) // Sends and gets response from OpenAI API
+        let newResponseArray = response.split(" "); // Splits response into words array for typing effect
+
+        // Runs a loop to print every word for typing effect
         for(let i=0; i<newResponseArray.length; i++) {
             const nextWord = newResponseArray[i];
             delayPara(i, nextWord+" ")
             setResultEnd(result=>result+nextWord+" ")
+
+            // checks for the last word being typed and rescans the webpage for math formulas to convert them
+            if (i==newResponseArray.length-1){
+                // for(let j=0; j<10; j++) {
+                    
+                // }
+                
+                setTimeout(() => {
+                    console.log("started spamming") 
+                    window.MathJax.typesetPromise();
+                }, 50*i+100); // last loop for last word and it's time delay, plus 100ms
+            }
         }
         setMessages([
             ...messages,

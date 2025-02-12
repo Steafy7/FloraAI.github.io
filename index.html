@@ -5,6 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="./src/assets/flora_icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flora AI</title>
+
+    <!-- Config for MathJax Library -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        }
+      };
+    </script>
+    <!-- MathJax v3 library -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   </head>
   <body>
     <div id="root"></div>

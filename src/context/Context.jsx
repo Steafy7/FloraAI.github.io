@@ -57,7 +57,7 @@ const ContextProvider = (props) => {
                 setTimeout(() => {
                     console.log("started spamming") 
                     window.MathJax.typesetPromise();
-                }, 50*i+100); // last loop for last word and it's time delay, plus 100ms
+                }, 50*i+500); // last loop for last word and it's time delay, plus 500ms
             }
         }
         setMessages([

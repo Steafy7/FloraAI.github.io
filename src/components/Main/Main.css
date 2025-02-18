@@ -179,10 +179,10 @@
     }
 }
 
-/* .markdown-content{
-    font-size: 17px;
-    line-height: 1.8;
-} */
+github-md {
+    display: block;
+    max-width: 97.5%;
+}
 
 .result-data p{
     font-size: 17px;

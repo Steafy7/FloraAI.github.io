@@ -9,7 +9,7 @@ const ContextProvider = (props) => {
     const [prevPrompts,setPrevPrompts] = useState([]);
     const [showResult,setShowResult] = useState(false);
     const [loading,setLoading] = useState(false);
-    const [resultData,setResultData] = useState("");
+    const [resultMessage,setResultMessage] = useState("");
     const [resultEnd, setResultEnd] = useState("");
     const [messages,setMessages] = useState([
         {
@@ -17,10 +17,11 @@ const ContextProvider = (props) => {
             isBot: true
         }
     ]);
+    const [isAtBottom, setIsAtBottom] = useState(true);
 
     const delayPara = (index,nextWord) => {
         setTimeout(function () {
-            setResultData(prev=>prev+nextWord);
+            setResultMessage(prev=>prev+nextWord);
         },50*index)
     };
 
@@ -28,7 +29,7 @@ const ContextProvider = (props) => {
 
     const onSent = async (inputText = input) => {
         if (!inputText) return; // Prevent sending blank input
-        setResultData("")
+        setResultMessage("")
         setResultEnd("") 
         setShowResult(true)
         setInput("")
@@ -40,7 +41,7 @@ const ContextProvider = (props) => {
         setLoading(true)
 
         const response = await runChat(inputText) // Sends and gets response from OpenAI API
-        let newResponseArray = response.split(" "); // Splits response into words array for typing effect
+        let newResponseArray = response.split(" ").filter(word => word.trim() !== ""); // Splits response into words array for typing effect
 
         // Runs a loop to print every word for typing effect
         for(let i=0; i<newResponseArray.length; i++) {
@@ -71,11 +72,13 @@ const ContextProvider = (props) => {
         onSent,
         showResult,
         loading,
-        resultData,
+        resultMessage,
         resultEnd,
         input,
         setInput,
-        messages
+        messages,
+        isAtBottom,
+        setIsAtBottom,
     }
 
     return (

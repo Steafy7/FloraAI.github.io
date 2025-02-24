@@ -6,25 +6,46 @@ import { Context } from '../../context/Context'
 const Main = () => {
 
     const msgEnd = useRef(null);
+    const resultContainerRef = useRef(null);
 
-    const {onSent,showResult,loading,resultData,resultEnd,setInput,input,messages} = useContext(Context)
+    const {onSent,showResult,loading,resultMessage,resultEnd,setInput,input,messagesisAtBottom,setIsAtBottom} = useContext(Context)
 
     useEffect(() => {
         renderMarkdown(); // Refreshes the markdown format
-        msgEnd.current?.scrollIntoView();
-    }, [messages, resultData]);
+        
+        // If the user has NOT scrolled up, auto-scroll
+        if (isAtBottom) {
+            msgEnd.current?.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messages, resultMessage]);
 
+    // Detects user scroll position
+    const handleScroll = () => {
+        if (!resultContainerRef.current) return;
+        const { scrollTop, scrollHeight, clientHeight } = resultContainerRef.current;
+        setIsAtBottom(scrollTop + clientHeight >= scrollHeight - 30);
+    };
+
+    // Function to handle when enter key pressed
     const enterPressed = async (e) => {
-        if (e.key === 'Enter') await sendMessage();
+        if (e.key === 'Enter') {
+            await sendMessage();
+            setIsAtBottom(true);
+        }
     }
 
+    // Function to handle when send button is clicked
     const sendMessage = async () => {
-        if (!loading && resultData === resultEnd) await onSent();
+        if (!loading && resultMessage === resultEnd) {
+            await onSent();
+            setIsAtBottom(true);
+        }
     }
 
     // Function to handle card clicks
     const handleCardClick = async (text) => {
         await onSent(text);  // Trigger the submission
+        setIsAtBottom(true);
     }
 
     return (
@@ -63,11 +84,11 @@ const Main = () => {
                         </div>
                     </div>
                     </>
-                    :<div className='result'>
+                    :<div className='result' ref={resultContainerRef} onScroll={handleScroll}>
                         {messages.map((message, i) =>
                             <div key={i} className={!message.isBot?"result-title":"result-data"}>
                                 <img src={!message.isBot?assets.user_icon:assets.flora_icon} alt='' />
-                                {message.isBot? <github-md dangerouslySetInnerHTML={{ __html: i === messages.length - 1 ? resultData : message.text }}></github-md> : <github-md>{message.text}</github-md>}
+                                {message.isBot? <github-md dangerouslySetInnerHTML={{ __html: i === messages.length - 1 ? resultMessage : message.text }}></github-md> : <github-md>{message.text}</github-md>}
                             </div>
                         )}
                         <div ref={msgEnd}/>

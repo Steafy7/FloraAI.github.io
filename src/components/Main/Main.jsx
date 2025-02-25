@@ -15,7 +15,7 @@ const Main = () => {
         
         // If the user has NOT scrolled up, auto-scroll
         if (isAtBottom) {
-            msgEnd.current?.scrollIntoView({ behavior: 'smooth' });
+            msgEnd.current?.scrollIntoView();
         }
     }, [messages, resultMessage]);
 
@@ -23,7 +23,7 @@ const Main = () => {
     const handleScroll = () => {
         if (!resultContainerRef.current) return;
         const { scrollTop, scrollHeight, clientHeight } = resultContainerRef.current;
-        setIsAtBottom(scrollTop + clientHeight >= scrollHeight - 30);
+        setIsAtBottom(scrollTop + clientHeight >= scrollHeight - 10);
     };
 
     // Function to handle when enter key pressed

@@ -8,7 +8,7 @@ const Main = () => {
     const msgEnd = useRef(null);
     const resultContainerRef = useRef(null);
 
-    const {onSent,showResult,loading,resultMessage,resultEnd,setInput,input,messagesisAtBottom,setIsAtBottom} = useContext(Context)
+    const {onSent,showResult,loading,resultMessage,resultEnd,setInput,input,messages,isAtBottom,setIsAtBottom} = useContext(Context)
 
     useEffect(() => {
         renderMarkdown(); // Refreshes the markdown format

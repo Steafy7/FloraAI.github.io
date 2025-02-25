@@ -48,14 +48,6 @@ const ContextProvider = (props) => {
             const nextWord = newResponseArray[i];
             delayPara(i, nextWord+" ")
             setResultEnd(result=>result+nextWord+" ")
-
-            // checks for the last word being typed and rescans the webpage for math formulas to convert them
-            if (i==newResponseArray.length-1){
-                setTimeout(() => {
-                    window.MathJax.typesetPromise();
-                    renderMarkdown(); // Refreshes the markdown format
-                }, 50*i+500); // last loop for last word and it's time delay, plus 500ms
-            }
         }
         setMessages([
             ...messages,

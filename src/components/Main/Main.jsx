@@ -12,7 +12,7 @@ const Main = () => {
 
     useEffect(() => {
         renderMarkdown(); // Refreshes the markdown format
-        
+        window.MathJax.typesetPromise();
         // If the user has NOT scrolled up, auto-scroll
         if (isAtBottom) {
             msgEnd.current?.scrollIntoView();
@@ -30,6 +30,7 @@ const Main = () => {
     const enterPressed = async (e) => {
         if (e.key === 'Enter') {
             await sendMessage();
+            window.MathJax.typesetPromise();
             setIsAtBottom(true);
         }
     }
@@ -38,6 +39,7 @@ const Main = () => {
     const sendMessage = async () => {
         if (!loading && resultMessage === resultEnd) {
             await onSent();
+            window.MathJax.typesetPromise();
             setIsAtBottom(true);
         }
     }
@@ -45,6 +47,7 @@ const Main = () => {
     // Function to handle card clicks
     const handleCardClick = async (text) => {
         await onSent(text);  // Trigger the submission
+        window.MathJax.typesetPromise();
         setIsAtBottom(true);
     }
 

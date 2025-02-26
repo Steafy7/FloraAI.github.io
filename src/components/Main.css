@@ -14,7 +14,7 @@
 .main-container .greet-container{
     display: flex;
     width: 100%;
-    justify-content: center; /* Horizontally center */
+    justify-content: center;
 }
 
 .main-container .greet{
@@ -39,7 +39,8 @@
     gap: 15px;
     padding: 20px;
     align-self: center;
-    margin: 0px 5%;
+    margin: 0 5%;
+    padding-top: 5%;
 }
 
 .main-container .card{
@@ -50,7 +51,6 @@
     border-radius: 10px;
     position: relative;
     cursor: pointer;
-    display: flex; /* Flexbox for better alignment */
 }
 
 .main-container .card img{

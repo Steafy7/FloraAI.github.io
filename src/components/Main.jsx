@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import './Main.css'
-import { assets } from '../../assets/assets'
-import { Context } from '../../context/Context'
+import { assets } from '../assets/assets'
+import { Context } from '../context/Context'
 
 const Main = () => {
 
@@ -53,20 +53,16 @@ const Main = () => {
 
     return (
         <div className='main'>
-            <div className="nav">
-                <div>
-                    <img src={assets.flora_icon} alt="" />
-                    <p>Flora</p>
-                </div>
-            </div>
             <div className="main-container">
 
                 {!showResult
                 ?
                 <>
-                    <div className="greet">
-                        <p><span>Hello, Welcome to Flora.</span></p>
-                        <p>How can I help you today?</p>
+                    <div className="greet-container">
+                        <div className="greet">
+                            <p><span>Hello, Welcome to Flora.</span></p>
+                            <p>How can I help you today?</p>
+                        </div>
                     </div>
                     <div className="cards">
                         <div className="card" onClick={(e) => handleCardClick("What are the available commands in Flora?")}>
@@ -86,7 +82,7 @@ const Main = () => {
                             <img src={assets.code_icon} alt="" />
                         </div>
                     </div>
-                    </>
+                </>
                     :<div className='result' ref={resultContainerRef} onScroll={handleScroll}>
                         {messages.map((message, i) =>
                             <div key={i} className={!message.isBot?"result-title":"result-data"}>

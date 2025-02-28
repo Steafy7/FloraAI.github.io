@@ -25,6 +25,7 @@
 }
 
 .main-container .greet span{
+    font-size: 80px;
     background: -webkit-linear-gradient(16deg,#ef7070,#7b383f);
     background-clip: text;
     -webkit-background-clip: text;

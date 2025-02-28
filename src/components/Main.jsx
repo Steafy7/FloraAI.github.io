@@ -31,6 +31,7 @@ const Main = () => {
         if (e.key === 'Enter') {
             await sendMessage();
             window.MathJax.typesetPromise();
+            msgEnd.current?.scrollIntoView();
             setIsAtBottom(true);
         }
     }
@@ -40,6 +41,7 @@ const Main = () => {
         if (!loading && resultMessage === resultEnd) {
             await onSent();
             window.MathJax.typesetPromise();
+            msgEnd.current?.scrollIntoView();
             setIsAtBottom(true);
         }
     }
@@ -48,6 +50,7 @@ const Main = () => {
     const handleCardClick = async (text) => {
         await onSent(text);  // Trigger the submission
         window.MathJax.typesetPromise();
+        msgEnd.current?.scrollIntoView();
         setIsAtBottom(true);
     }
 

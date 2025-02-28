@@ -15,12 +15,6 @@
     align-items: center;
 }
 
-/* .main-container .greet-container{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-} */
-
 .main-container .greet{
     margin-top: 50px;
     font-size: 56px;

@@ -58,11 +58,9 @@ const Main = () => {
                 {!showResult
                 ?
                 <>
-                    <div className="greet-container">
-                        <div className="greet">
-                            <p><span>Hello, Welcome to Flora.</span></p>
-                            <p>How can I help you today?</p>
-                        </div>
+                    <div className="greet">
+                        <p><span>Hello, Welcome to Flora.</span></p>
+                        <p>How can I help you today?</p>
                     </div>
                     <div className="cards">
                         <div className="card" onClick={(e) => handleCardClick("What are the available commands in Flora?")}>

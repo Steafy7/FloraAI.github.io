@@ -1,7 +1,6 @@
 .main{
     flex: 1;
     min-height: 100vh;
-    padding-bottom: 15vh;
     position: relative;
 }
 
@@ -33,7 +32,8 @@
 }
 
 .main-container .cards{
-    display: flex;
+    padding-bottom: 10%;
+    display: inline-flex;
     gap: 15px;
     justify-content: center;
     flex: 1;
@@ -41,7 +41,7 @@
 }
 
 .main-container .card{
-    height: 200px;
+    height: 22.5vh;
     flex: 1;
     padding: 15px;
     background-color: #f0f4f9;
@@ -93,13 +93,19 @@
     cursor: pointer;
 }
 
-.search-box input{
+.search-box textarea {
     flex: 1;
+    resize: none;
+    height: 35px;
+    max-height: 100px;
+    overflow-y: auto;
     background: transparent;
     border: none;
     outline: none;
     padding: 8px;
     font-size: 18px;
+    font-family: inherit;
+    line-height: 1;
 }
 
 .search-box div{

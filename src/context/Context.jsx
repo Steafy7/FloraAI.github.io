@@ -29,18 +29,19 @@ const ContextProvider = (props) => {
 
     const onSent = async (inputText = input) => {
         if (!inputText) return; // Prevent sending blank input
-        setResultMessage("")
+        setResultMessage("Loading...")
         setResultEnd("") 
         setShowResult(true)
         setInput("")
         setMessages([
             ...messages,
             {text: inputText, isBot: false},
-            {text: "", isBot: true}
+            {text: " ", isBot: true}
         ]);
         setLoading(true)
 
         const response = await runChat(inputText) // Sends and gets response from OpenAI API
+        setResultMessage("") // Gets rid of the loader.
         let newResponseArray = response.split(" ").filter(word => word.trim() !== ""); // Splits response into words array for typing effect
 
         // Runs a loop to print every word for typing effect

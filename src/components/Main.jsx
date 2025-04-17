@@ -10,12 +10,33 @@ const Main = () => {
 
     const {onSent,showResult,loading,resultMessage,resultEnd,setInput,input,messages,isAtBottom,setIsAtBottom} = useContext(Context)
 
+    const autoResizeTextarea = (e) => {
+        const textarea = e.target;
+        textarea.style.height = "10px"; // Reset height
+        textarea.style.height = textarea.scrollHeight + "px"; // Set to scrollHeight
+    };
+
+    // Scrolls when initial message is sent.
     useEffect(() => {
         renderMarkdown(); // Refreshes the markdown format
         window.MathJax.typesetPromise();
+
+        if (showResult) {
+            setTimeout(() => {
+                if (resultContainerRef.current) {
+                    resultContainerRef.current.scrollTop = resultContainerRef.current.scrollHeight;
+                }
+            }, 50); // Give the DOM time to mount
+        }
+    }, [showResult]);
+
+    useEffect(() => {
+        renderMarkdown(); // Refreshes the markdown format
+        window.MathJax.typesetPromise();
+
         // If the user has NOT scrolled up, auto-scroll
-        if (isAtBottom) {
-            msgEnd.current?.scrollIntoView();
+        if (resultContainerRef.current && isAtBottom) {
+            resultContainerRef.current.scrollTop = resultContainerRef.current.scrollHeight
         }
     }, [messages, resultMessage]);
 
@@ -28,7 +49,7 @@ const Main = () => {
 
     // Function to handle when enter key pressed
     const enterPressed = async (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !e.shiftKey) {
             await sendMessage();
             window.MathJax.typesetPromise();
             setIsAtBottom(true);
@@ -88,7 +109,6 @@ const Main = () => {
                                 {message.isBot? <github-md dangerouslySetInnerHTML={{ __html: i === messages.length - 1 ? resultMessage : message.text }}></github-md> : <github-md>{message.text}</github-md>}
                             </div>
                         )}
-                        <div ref={msgEnd}/>
                     </div>
                 }
 
@@ -96,7 +116,15 @@ const Main = () => {
 
                 <div className="main-bottom">
                     <div className="search-box">
-                        <input onChange={(e)=>setInput(e.target.value)} value={input} onKeyDown={enterPressed} type='text' placeholder='Enter a prompt here'/>
+                        <textarea
+                            value={input}
+                            onChange={(e) => {
+                                setInput(e.target.value);
+                                autoResizeTextarea(e);
+                            }}
+                            onKeyDown={enterPressed}
+                            placeholder="Enter a prompt here"
+                        />
                         <div>
                             <img src={assets.gallery_icon} alt="" />
                             <img src={assets.mic_icon} alt="" />

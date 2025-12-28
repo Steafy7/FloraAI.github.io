@@ -32,7 +32,7 @@ async function runChat(prompt) {
     const completePromptHistory = [...setupPrompts, ...recentPrompts];
 
 
-    const response = await openai.chat.responses.create({
+    const response = await openai.responses.create({
         model: "gpt-4o",
         input: completePromptHistory
     });

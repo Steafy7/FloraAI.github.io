@@ -59,6 +59,7 @@ const Main = () => {
             await sendMessage();
             window.MathJax.typesetPromise();
             setIsAtBottom(true);
+            autoResizeTextarea(textareaRef.current);
         }
     }
 

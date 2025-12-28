@@ -50,10 +50,10 @@ const Main = () => {
     // Function to handle when enter key pressed
     const enterPressed = async (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
             await sendMessage();
             window.MathJax.typesetPromise();
             setIsAtBottom(true);
-            autoResizeTextarea;
         }
     }
 

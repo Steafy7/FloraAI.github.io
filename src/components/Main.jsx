@@ -54,7 +54,6 @@ const Main = () => {
             await sendMessage();
             window.MathJax.typesetPromise();
             setIsAtBottom(true);
-            autoResizeTextarea;
         }
     }
 
@@ -126,7 +125,10 @@ const Main = () => {
                                 setInput(e.target.value);
                                 autoResizeTextarea(e);
                             }}
-                            onKeyDown={enterPressed}
+                            onKeyDown={(e) => {
+                                autoResizeTextarea(e)
+                                enterPressed
+                            }}
                             placeholder="Enter a prompt here"
                         />
                         <div>

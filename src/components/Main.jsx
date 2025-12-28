@@ -54,18 +54,18 @@ const Main = () => {
             await sendMessage();
             window.MathJax.typesetPromise();
             setIsAtBottom(true);
-            if (resultContainerRef.current && isAtBottom) {
-                resultContainerRef.current.scrollTop = resultContainerRef.current.scrollHeight
-            }
+            
         }
     }
 
     // Function to handle when send button is clicked
     const sendMessage = async () => {
+        if (!loading) {
+            setIsAtBottom(true);
+        }
         if (!loading && resultMessage === resultEnd) {
             await onSent();
             window.MathJax.typesetPromise();
-            setIsAtBottom(true);
         }
     }
 

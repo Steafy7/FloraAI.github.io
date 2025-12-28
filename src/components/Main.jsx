@@ -125,7 +125,10 @@ const Main = () => {
                                 setInput(e.target.value);
                                 autoResizeTextarea(e);
                             }}
-                            onKeyDown={enterPressed}
+                            onKeyDown={(e) => {
+                                enterPressed
+                                textarea.style.height = "10px"; // Reset height
+                            }}
                             placeholder="Enter a prompt here"
                         />
                         <div>

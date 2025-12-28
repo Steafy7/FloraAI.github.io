@@ -6,14 +6,15 @@ import { Context } from '../context/Context'
 const Main = () => {
 
     const msgEnd = useRef(null);
+    const textareaRef = useRef(null);
     const resultContainerRef = useRef(null);
 
     const {onSent,showResult,loading,resultMessage,resultEnd,setInput,input,messages,isAtBottom,setIsAtBottom} = useContext(Context)
 
     const autoResizeTextarea = (e) => {
-        const textarea = e.target;
-        textarea.style.height = "10px"; // Reset height
-        textarea.style.height = textarea.scrollHeight + "px"; // Set to scrollHeight
+        if (!e) return;
+        e.style.height = "10px"; // Reset height
+        e.style.height = e.scrollHeight + "px"; // Set to scrollHeight
     };
 
     // Scrolls when initial message is sent.
@@ -39,6 +40,10 @@ const Main = () => {
             resultContainerRef.current.scrollTop = resultContainerRef.current.scrollHeight
         }
     }, [messages, resultMessage]);
+
+    useEffect(() => {
+        autoResizeTextarea(textareaRef.current);      // runs on clear too
+    }, [input]);
 
     // Detects user scroll position
     const handleScroll = () => {
@@ -123,12 +128,9 @@ const Main = () => {
                             value={input}
                             onChange={(e) => {
                                 setInput(e.target.value);
-                                autoResizeTextarea(e);
+                                autoResizeTextarea(e.target);
                             }}
-                            onKeyDown={(e) => {
-                                autoResizeTextarea(e)
-                                enterPressed
-                            }}
+                            onKeyDown={enterPressed}
                             placeholder="Enter a prompt here"
                         />
                         <div>

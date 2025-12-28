@@ -38,7 +38,6 @@ const Main = () => {
         if (resultContainerRef.current && isAtBottom) {
             resultContainerRef.current.scrollTop = resultContainerRef.current.scrollHeight
         }
-        window.MathJax.typesetPromise();
     }, [messages, resultMessage]);
 
     // Detects user scroll position
@@ -54,7 +53,7 @@ const Main = () => {
             await sendMessage();
             window.MathJax.typesetPromise();
             setIsAtBottom(true);
-            
+            autoResizeTextarea;
         }
     }
 
